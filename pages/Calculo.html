@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ganimedes - Cálculo</title>
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <h1>Ganimedes</h1>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="../index.html">Inicio</a></li>
+                <li><a href="Calculo.html" class="active">Cálculo</a></li>
+                <li><a href="Historial.html">Historial</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <div class="card">
+            <h2>Comparador de Números</h2>
+            <p style="margin-bottom: 20px; color: var(--texto-gris);">Ingresá dos números y te digo cuál es el más grande.</p>
+            
+            <div class="form-group">
+                <label>Primer número:</label>
+                <input type="number" id="primerNumeroIngresado">
+            </div>
+
+            <div class="form-group">
+                <label>Segundo número:</label>
+                <input type="number" id="segundoNumeroIngresado">
+            </div>
+
+            <div id="contenedorMensajeError" class="mensaje-error">
+                <!-- Acá se muestran los errores de validación -->
+            </div>
+
+            <div class="botones">
+                <button id="botonEjecutarComparacion" class="btn btn-azul">¡Comparar!</button>
+                <button id="botonBorrarCampos" class="btn btn-vacio">Limpiar</button>
+            </div>
+
+            <div id="contenedorResultadoFinal" class="resultado">
+                <p id="textoResultadoComparacion" style="font-weight: 700; font-size: 18px;"></p>
+            </div>
+        </div>
+    </main>
+
+    <script src="../js/script .js"></script>
+</body>
+</html>
