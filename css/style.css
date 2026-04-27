@@ -1,27 +1,521 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap');
+/* ═══════════════════════════════════════════
+       GANIMEDES — Estética Africana
+       Inspiración: Kente (Ghana), Adinkra, Sahel
+    ═══════════════════════════════════════════ */
 
-:root {
-  /* Tema de la Pagina (dark neon)*/
-  --bg-dark: #0f1014;
-  --bg-card: #18191f;
-  --text-primary: #f5f5f5;
-  --text-secondary: #a0a0ab;
-  --accent-color: #270cd7;
-  --accent-hover: #2b10c4;
-  --border-color: #2b2c34;
+    :root {
+      --tierra:       #1a0f00;
+      --tierra-mid:   #2e1a00;
+      --tierra-light: #4a2c00;
+      --barro:        #6b3d0f;
+      --ocre:         #c47820;
+      --sol:          #e8a030;
+      --oro:          #f5c842;
+      --fuego:        #c0392b;
+      --fuego-vivo:   #e74c3c;
+      --kente-verde:  #1a6b2a;
+      --kente-azul:   #1a3a6b;
+      --arena:        #d4a96a;
+      --arena-clara:  #f0dbb8;
+      --marfil:       #faf3e0;
+      --texto-gris:   #c4a070;
+    }
 
-  /* Regla de 4px */
-  --spacing-1: 4px;
-  --spacing-2: 8px;
-  --spacing-3: 16px;
-  --spacing-4: 24px;
-  --spacing-5: 32px;
-  --spacing-6: 48px;
-  --spacing-7: 64px;
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { font-size: 16px; }
 
-  /* Extras */
-  --transition-fast: 0.2s ease-in-out;
-  --transition-smooth: 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
-  --border-radius: 8px;
-  --border-radius-lg: 16px;
-}
+    body {
+      background-color: var(--tierra);
+      color: var(--marfil);
+      font-family: 'Philosopher', serif;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      overflow-x: hidden;
+      position: relative;
+    }
+
+    /* Patrón geométrico tribal de fondo */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image:
+        repeating-linear-gradient(45deg,  transparent 0px, transparent 20px, rgba(196,120,32,0.04) 20px, rgba(196,120,32,0.04) 21px),
+        repeating-linear-gradient(-45deg, transparent 0px, transparent 20px, rgba(196,120,32,0.04) 20px, rgba(196,120,32,0.04) 21px);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    body::after {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background:
+        radial-gradient(ellipse at 15% 20%, rgba(192,57,43,0.08) 0%, transparent 50%),
+        radial-gradient(ellipse at 85% 80%, rgba(196,120,32,0.10) 0%, transparent 50%);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    /* ── Banda Kente ── */
+    .kente-band {
+      height: 12px;
+      flex-shrink: 0;
+      background: repeating-linear-gradient(
+        90deg,
+        var(--fuego)       0px,  var(--fuego)       16px,
+        var(--oro)         16px, var(--oro)          32px,
+        var(--kente-verde) 32px, var(--kente-verde)  48px,
+        var(--tierra-mid)  48px, var(--tierra-mid)   52px,
+        var(--fuego)       52px, var(--fuego)        68px,
+        var(--kente-azul)  68px, var(--kente-azul)   84px,
+        var(--oro)         84px, var(--oro)          100px
+      );
+    }
+
+    .kente-band.thin { height: 5px; }
+
+    /* ── Header ── */
+    header {
+      position: relative;
+      z-index: 10;
+      background: var(--tierra-mid);
+      border-bottom: 2px solid var(--barro);
+      display: flex;
+      flex-direction: column;
+    }
+
+    .header-inner {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1.1rem 2.5rem;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    .logo h1 {
+      font-family: 'Yatra One', cursive;
+      font-size: clamp(1.6rem, 4vw, 2.4rem);
+      color: var(--oro);
+      letter-spacing: 0.1em;
+      text-shadow: 2px 2px 0 var(--fuego), 0 0 20px rgba(245,200,66,0.3);
+      line-height: 1;
+      cursor: pointer;
+    }
+
+    nav ul {
+      list-style: none;
+      display: flex;
+      flex-direction: row;
+      gap: 0.2rem;
+    }
+
+    nav ul li a {
+      font-family: 'Share Tech Mono', monospace;
+      font-size: 0.7rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--arena);
+      text-decoration: none;
+      padding: 0.45rem 0.9rem;
+      border: 1px solid transparent;
+      border-bottom: 2px solid transparent;
+      transition: all 0.2s;
+      display: block;
+      cursor: pointer;
+    }
+
+    nav ul li a:hover {
+      color: var(--oro);
+      border-color: var(--barro);
+      background: rgba(196,120,32,0.08);
+    }
+
+    nav ul li a.active {
+      color: var(--oro);
+      border-color: var(--ocre);
+      border-bottom-color: var(--fuego);
+      background: rgba(196,120,32,0.12);
+    }
+
+    /* ── Main / vistas ── */
+    main {
+      position: relative;
+      z-index: 1;
+      flex: 1;
+      padding: 2.5rem 2rem;
+      width: 100%;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    /* ── Sistema de vistas (SPA) ── */
+    .vista { display: none; }
+    .vista.activa {
+      display: block;
+      animation: aparecer 0.35s cubic-bezier(0.4,0,0.2,1);
+    }
+
+    @keyframes aparecer {
+      from { opacity: 0; transform: translateY(10px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ── Card ── */
+    .card {
+      background: var(--tierra-mid);
+      border: 1px solid var(--barro);
+      border-top: 3px solid var(--ocre);
+      padding: 2rem 2.2rem;
+      position: relative;
+      overflow: hidden;
+      margin-bottom: 1.2rem;
+    }
+
+    .card::before {
+      content: '✦';
+      position: absolute;
+      top: 0.5rem; right: 0.8rem;
+      color: var(--barro);
+      font-size: 1.2rem;
+      opacity: 0.5;
+      pointer-events: none;
+    }
+
+    .card::after {
+      content: '✦';
+      position: absolute;
+      bottom: 0.5rem; left: 0.8rem;
+      color: var(--barro);
+      font-size: 1.2rem;
+      opacity: 0.5;
+      pointer-events: none;
+    }
+
+    .card h2 {
+      font-family: 'Yatra One', cursive;
+      font-size: 1.8rem;
+      color: var(--oro);
+      letter-spacing: 0.08em;
+      margin-bottom: 0.4rem;
+      text-shadow: 1px 1px 0 var(--fuego);
+    }
+
+    .card h3 {
+      font-family: 'Yatra One', cursive;
+      font-size: 1.2rem;
+      color: var(--sol);
+      letter-spacing: 0.06em;
+      margin-bottom: 0.5rem;
+    }
+
+    .card p {
+      color: var(--arena);
+      line-height: 1.7;
+      font-size: 0.95rem;
+    }
+
+    /* ── Vista Inicio ── */
+    .hero-card {
+      background: linear-gradient(135deg, var(--tierra-mid), var(--tierra-light));
+      border-top: 3px solid var(--ocre);
+      padding: 3rem 2.5rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .hero-card h2 {
+      font-size: clamp(1.8rem, 5vw, 3rem);
+    }
+
+    .hero-card p {
+      font-size: 1rem;
+      margin: 0.6rem 0 0;
+    }
+
+    .cards-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1.2rem;
+    }
+
+    /* ── Form ── */
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      gap: 0.4rem;
+      margin-bottom: 1.2rem;
+    }
+
+    .form-group label {
+      font-family: 'Share Tech Mono', monospace;
+      font-size: 0.65rem;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--ocre);
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .form-group label::before {
+      content: '';
+      width: 8px; height: 8px;
+      background: var(--fuego);
+      transform: rotate(45deg);
+      flex-shrink: 0;
+    }
+
+    .form-group input[type="number"] {
+      background: var(--tierra);
+      border: 1px solid var(--barro);
+      border-top: 2px solid var(--ocre);
+      color: var(--oro);
+      font-family: 'Yatra One', cursive;
+      font-size: 2rem;
+      padding: 0.5rem 1rem;
+      outline: none;
+      width: 100%;
+      text-align: center;
+      letter-spacing: 0.05em;
+      transition: border-color 0.2s, box-shadow 0.2s;
+      -moz-appearance: textfield;
+    }
+
+    .form-group input[type="number"]::-webkit-inner-spin-button,
+    .form-group input[type="number"]::-webkit-outer-spin-button { -webkit-appearance: none; }
+
+    .form-group input[type="number"]::placeholder { color: var(--tierra-light); }
+
+    .form-group input[type="number"]:focus {
+      border-color: var(--sol);
+      box-shadow: 0 0 0 2px rgba(232,160,48,0.2);
+    }
+
+    /* ── Botones ── */
+    .botones {
+      display: flex;
+      flex-direction: row;
+      gap: 0.8rem;
+      margin: 1.4rem 0;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      font-family: 'Share Tech Mono', monospace;
+      font-size: 0.72rem;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      padding: 0.8rem 1.6rem;
+      border: none;
+      cursor: pointer;
+      flex: 1;
+      min-width: 120px;
+      position: relative;
+      overflow: hidden;
+      transition: all 0.2s;
+      text-align: center;
+      text-decoration: none;
+      display: inline-block;
+    }
+
+    .btn::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: repeating-linear-gradient(
+        -45deg,
+        transparent 0px, transparent 6px,
+        rgba(255,255,255,0.04) 6px, rgba(255,255,255,0.04) 7px
+      );
+      pointer-events: none;
+    }
+
+    .btn-azul {
+      background: linear-gradient(180deg, var(--fuego) 0%, var(--fuego-vivo) 50%, #9b2318 100%);
+      color: var(--oro);
+      border-top: 2px solid var(--oro);
+      border-bottom: 2px solid #7a1812;
+      text-shadow: 0 1px 2px rgba(0,0,0,0.5);
+    }
+
+    .btn-azul:hover {
+      background: linear-gradient(180deg, var(--fuego-vivo), var(--fuego));
+      box-shadow: 0 0 16px rgba(192,57,43,0.5);
+      letter-spacing: 0.3em;
+    }
+
+    .btn-vacio {
+      background: transparent;
+      color: var(--arena);
+      border: 1px solid var(--barro);
+      border-top: 2px solid var(--ocre);
+    }
+
+    .btn-vacio:hover {
+      border-color: var(--sol);
+      color: var(--sol);
+      background: rgba(196,120,32,0.08);
+    }
+
+    .btn:active { transform: scaleY(0.97); }
+
+    /* ── Resultado ── */
+    .resultado {
+      display: none;
+      background: var(--tierra);
+      border: 1px solid var(--ocre);
+      border-left: 5px solid var(--fuego);
+      padding: 1.2rem 1.6rem;
+      margin-top: 1rem;
+      position: relative;
+      animation: emerge 0.4s cubic-bezier(0.4,0,0.2,1);
+    }
+
+    .resultado::after {
+      content: '◆';
+      position: absolute;
+      top: 0.6rem; right: 0.8rem;
+      color: var(--ocre);
+      font-size: 0.8rem;
+      opacity: 0.5;
+    }
+
+    @keyframes emerge {
+      from { opacity: 0; transform: translateY(8px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    .resultado p {
+      font-family: 'Yatra One', cursive;
+      font-size: 1.2rem;
+      color: var(--oro);
+      letter-spacing: 0.06em;
+      text-shadow: 1px 1px 0 var(--fuego);
+    }
+
+    /* ── Error ── */
+    .mensaje-error {
+      display: none;
+      background: rgba(192,57,43,0.15);
+      border: 1px solid var(--fuego);
+      border-left: 4px solid var(--fuego-vivo);
+      color: #f5a090;
+      font-family: 'Share Tech Mono', monospace;
+      font-size: 0.78rem;
+      letter-spacing: 0.04em;
+      padding: 0.8rem 1rem;
+      margin-bottom: 0.8rem;
+      animation: emerge 0.3s ease;
+    }
+
+    /* ── Historial ── */
+    .historial-header {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 1.4rem;
+      flex-wrap: wrap;
+      gap: 0.8rem;
+    }
+
+    .historial-lista {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0.6rem;
+      padding: 0;
+    }
+
+    .history-item {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      gap: 1rem;
+      background: var(--tierra);
+      border: 1px solid rgba(196,120,32,0.2);
+      border-left: 4px solid var(--ocre);
+      padding: 0.9rem 1.2rem;
+      position: relative;
+      overflow: hidden;
+      animation: stamp 0.3s ease;
+      transition: border-color 0.2s, box-shadow 0.2s;
+    }
+
+    .history-item::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 2px;
+      background: repeating-linear-gradient(
+        90deg,
+        var(--fuego) 0px, var(--fuego) 8px,
+        var(--oro) 8px, var(--oro) 16px,
+        var(--kente-verde) 16px, var(--kente-verde) 24px,
+        transparent 24px, transparent 32px
+      );
+      opacity: 0.5;
+    }
+
+    .history-item:hover {
+      border-color: var(--sol);
+      box-shadow: 0 3px 12px rgba(196,120,32,0.2);
+    }
+
+    @keyframes stamp {
+      from { opacity: 0; transform: translateX(-8px); }
+      to   { opacity: 1; transform: translateX(0); }
+    }
+
+    .history-content {
+      flex: 1;
+      font-size: 0.92rem;
+      color: var(--arena-clara);
+      line-height: 1.5;
+    }
+
+    .history-content strong {
+      font-family: 'Yatra One', cursive;
+      color: var(--sol);
+      letter-spacing: 0.05em;
+      font-size: 1rem;
+    }
+
+    .history-date {
+      font-family: 'Share Tech Mono', monospace;
+      font-size: 0.58rem;
+      color: var(--barro);
+      letter-spacing: 0.1em;
+      flex-shrink: 0;
+      text-align: right;
+    }
+
+    #mensajeHistorialVacio {
+      text-align: center;
+      color: var(--texto-gris);
+      padding: 2rem 0;
+      font-style: italic;
+    }
+
+    /* ── Footer Kente ── */
+    .footer-kente {
+      margin-top: auto;
+    }
+
+    /* ── Scrollbar ── */
+    ::-webkit-scrollbar { width: 5px; }
+    ::-webkit-scrollbar-track { background: var(--tierra); }
+    ::-webkit-scrollbar-thumb { background: var(--barro); }
+
+    /* ── Responsive ── */
+    @media (max-width: 600px) {
+      main { padding: 1.5rem 1rem; }
+      .header-inner { padding: 0.9rem 1.2rem; }
+      .botones { flex-direction: column; }
+      .btn { flex: none; width: 100%; }
+      .history-item { flex-direction: column; align-items: flex-start; gap: 0.4rem; }
+      .history-date { text-align: left; }
+    }
